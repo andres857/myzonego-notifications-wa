@@ -1,25 +1,12 @@
 const express = require('express')
-
 const app = express()
+const router = require('./routes/index')
+const {server} = require('./config')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
+router(app)
 
-
-app.get('/',(req,res)=>{
-    res.json('holas')
-})
-
-app.post('/meta_wa_callbackurl', async (req, res) => {
-    try {
-        console.log('POST: Someone is pinging me!');
-        return res.sendStatus(200);
-    } catch (error) {
-                console.error({error})
-        return res.sendStatus(500);
-    }
-});
-
-app.listen(3000,()=>{
-    console.log('servidor activo');
+app.listen(server.PORT,()=>{
+    console.log(`server running on port ${server.PORT}`);
 })
