@@ -6,15 +6,18 @@ async function sendMsgText(auth,phoneToNotificate,message){
         auth[1].wa_phoneNumberId,
         auth[1].wa_wabaId)
         let logs = []
-
-        for (let i = 0; i < phoneToNotificate.length; i++) {
-            const msg = await connection.sendText({
-                recipientPhone: phoneToNotificate[i].phone,
-                message: message
-            })
-            logs.push(msg)  
+        try {
+            for (let i = 0; i < phoneToNotificate.length; i++) {
+                const msg = await connection.sendText({
+                    recipientPhone: phoneToNotificate[i].phone,
+                    message: message
+                })
+                logs.push(msg)  
+            }
+            return logs
+        } catch (error) {
+            console.error(error);
         }
-        return logs
 }
 
 async function sendMsgWithButtons(){
