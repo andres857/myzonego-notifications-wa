@@ -1,18 +1,20 @@
 const newConnection = require('../utils/waCloudApi')
 
 async function sendMsgText(auth,phoneToNotificate,message){
+    // create a new connetion
     const connection = newConnection(auth[1].wa_accessToken,
         auth[1].wa_phoneNumberId,
         auth[1].wa_wabaId)
-        try {
+        let logs = []
+
+        for (let i = 0; i < phoneToNotificate.length; i++) {
             const msg = await connection.sendText({
-                recipientPhone: phoneToNotificate,
+                recipientPhone: phoneToNotificate[i].phone,
                 message: message
             })
-            return msg
-        } catch (error) {
-            console.error(error);
+            logs.push(msg)  
         }
+        return logs
 }
 
 async function sendMsgWithButtons(){
