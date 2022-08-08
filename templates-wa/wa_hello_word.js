@@ -1,11 +1,11 @@
-function template(phone, templateName){
+function template(phone){
     return {
         "messaging_product": "whatsapp", 
         "to": phone, 
         "type": "template", 
         "template": 
             { 
-                "name": templateName, 
+                "name": "hello_world", 
                 "language": 
                 { 
                     "code": "en_US" 
