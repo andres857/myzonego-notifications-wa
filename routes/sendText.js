@@ -7,7 +7,8 @@ router.post('/', async (req,res)=>{
     // const logs = await service.sendMsgText(auth,numbersToNotificate,message[0].message)
     const {auth, message} = req.body
     try {
-        service.sendTemplate(auth,message).then((request)=> console.log(request))
+        let rta =  console.log( await service.sendTemplate(auth,message))
+        console.log(`${rta} ---------------------------`);
         
     } catch (error) {
         res.json(error)
