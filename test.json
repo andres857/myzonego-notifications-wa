@@ -1,0 +1,34 @@
+{
+    "messaging_product": "whatsapp",
+    "recipient_type": "individual",
+    "to": "{{Recipient-Phone-Number}}",
+    "type": "template",
+    "template": {
+        "name": "sample_purchase_feedback",
+        "language": {
+            "code": "es"
+        },
+        "components": [
+            {
+                "type": "header",
+                "parameters": [
+                    {
+                        "type": "image",
+                        "image": {
+                            "link": "https://pbs.twimg.com/media/FZ4fz2JXkAE2bfk?format=jpg&name=medium"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "body",
+                "parameters": [
+                    {
+                        "type": "text",
+                        "text": "saludos"
+                    }
+                ]
+            }
+        ]
+    }
+}

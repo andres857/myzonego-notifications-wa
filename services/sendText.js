@@ -1,18 +1,19 @@
 const axios = require('axios')
-const template = require('../templates-wa/wa_hello_word')
+const template = require('../templates-wa/new_content_to_group')
 const graph = 'https://graph.facebook.com/v13.0/101157906035627/messages'
 
-let logs = []
-
-function returnLogs(logs){
-    return logs
-}
-
 async function sendTemplate(auth,message){
+    
+    return new Promise ((resolve,reject)=>{
+        let logs = []
+        message.numbersToNotificate.forEach( async element => {   
 
-       message.numbersToNotificate.forEach(async element => {
-            const templateHelloWorld = template(element.phone)
-
+            let contentName = message.content_name
+            let group = message.group
+            let zone = message.zone
+            let urlImage = message.image
+            
+            const templateHelloWorld = template(element.phone,element.name,contentName,group,zone,urlImage)     
             axios.post(graph,templateHelloWorld, {
                 headers: {
                     Authorization: `Bearer ${auth.wa_accessToken}`,
@@ -23,9 +24,15 @@ async function sendTemplate(auth,message){
                     phone: element.phone,
                     date: new Date()
                 })
-            }).catch(e=>{console.error(e)})
+                if (logs.length === message.numbersToNotificate.length){
+                    resolve(logs)
+                }
+                console.log(`service ${new Date()} -------- ${logs}`);
+            }).catch(e => {
+                reject(e)
+            })
         })
-        console.log(`***********${logs}`);
+    })
 }
 
 module.exports = {
