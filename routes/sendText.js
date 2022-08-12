@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express()
 const service = require('../services/sendText')
+const moment = require('moment')
 
 router.post('/',  async (req,res)=>{
     // const {auth,numbersToNotificate,message } = req.body    
@@ -12,7 +13,7 @@ router.post('/',  async (req,res)=>{
     //     res.json(error)
     // }
     service.sendTemplate(auth,message).then(logs =>{
-        console.log(`routes ${new Date()} -------- ${logs}`);
+        console.log(`routes ${moment().format("dddd, MMMM Do YYYY, h:mm:ss a")} -------- ${logs}`);
         res.json(logs)
     })
 

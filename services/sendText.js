@@ -1,6 +1,7 @@
 const axios = require('axios')
 const template = require('../templates-wa/new_content_to_group')
 const graph = 'https://graph.facebook.com/v13.0/101157906035627/messages'
+const moment = require('moment')
 
 async function sendTemplate(auth,message){
     
@@ -22,12 +23,13 @@ async function sendTemplate(auth,message){
                 logs.push({
                     status:request.status,
                     phone: element.phone,
-                    date: new Date()
+                    startConversation: moment().format("dddd, MMMM Do YYYY, h:mm:ss a"),
+                    endsConversation: moment().add(1,'day').format("dddd, MMMM Do YYYY, h:mm:ss a"),
                 })
                 if (logs.length === message.numbersToNotificate.length){
                     resolve(logs)
                 }
-                console.log(`service ${new Date()} -------- ${logs}`);
+                console.log(`service ${moment().format("dddd, MMMM Do YYYY, h:mm:ss a")} -------- ${logs}`);
             }).catch(e => {
                 reject(e)
             })
