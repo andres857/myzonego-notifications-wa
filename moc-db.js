@@ -24,8 +24,6 @@ function dbconversations(){
             )
         },500)
     })
-
-    
 }
 
 module.exports = dbconversations

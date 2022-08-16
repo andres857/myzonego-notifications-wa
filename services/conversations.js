@@ -26,7 +26,7 @@ async function conversationsCurrent(client){
     // method to get conversations Current - DB
     const conversations = await dbconversations()
     conversations.forEach(element => {
-        console.log(element.startConversation);
+        element.start
     });
 }
 
