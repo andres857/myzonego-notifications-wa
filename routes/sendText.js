@@ -3,6 +3,15 @@ const router = express()
 const service = require('../services/sendText')
 const moment = require('moment')
 
+router.get('/',  (req,res)=>{
+    res.json({
+        saludo:'hola Camilo',
+        message:{
+            req
+        }
+    })
+})
+
 router.post('/',  async (req,res)=>{
     // const {auth,numbersToNotificate,message } = req.body    
     // const logs = await service.sendMsgText(auth,numbersToNotificate,message[0].message)
