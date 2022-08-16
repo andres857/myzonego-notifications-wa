@@ -16,7 +16,6 @@ async function sendTemplate(auth,message){
             let urlImage = message.image
             
             const templateHelloWorld = template(element.phone,element.name,contentName,group,zone,urlImage)     
-            try {
                 axios.post(graph,templateHelloWorld, {
                     headers: {
                         Authorization: `Bearer ${auth.wa_accessToken}`,
@@ -35,9 +34,6 @@ async function sendTemplate(auth,message){
                 }).catch(e => {
                     reject(e)
                 })
-            } catch (error) {
-                reject(e)
-            }
         })
     })
 }
