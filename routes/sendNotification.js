@@ -15,13 +15,17 @@ router.get('/',  (req,res)=>{
 
 router.post('/',  async (req,res)=>{
     const {auth, message} = req.body
-
-    service.sendTemplate(auth,message).then(logs =>{
-        console.log(`routes ${moment().format("dddd, MMMM Do YYYY, h:mm:ss a")} -------- ${logs}`);
-        res.json(logs)
-    }).catch(e=>{
-        res.json(e)
-    })
+        service.sendTemplate(auth,message).then(logs =>{
+            console.log(`routes ${moment().format("dddd, MMMM Do YYYY, h:mm:ss a")} -------- ${logs}`);
+            res.json(logs)
+        })
+        .catch( e => {
+            console.log('hello world');
+            let messageError = e
+            res.json({
+                error: messageError
+            })
+        })
 })
 
 module.exports = router
