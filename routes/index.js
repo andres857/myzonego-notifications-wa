@@ -1,13 +1,9 @@
-const routerSendText = require('./sendText')
-const routerSendImage = require('./sendImage')
-const routerSendVideo = require('./sendVideo')
+const routerSendText = require('./sendNotification')
 
 // definir un middleware for handle routes
 const route = '/api/v1/notifications/wa'
 function routerApi(app){
-    app.use(`${route}/sendText`, routerSendText)
-    app.use(`${route}/sendImage`, routerSendImage)
-    app.use(`${route}/sendVideo`, routerSendVideo)
+    app.use(`${route}/sendNotification`, routerSendText)
 }
 
 module.exports = routerApi

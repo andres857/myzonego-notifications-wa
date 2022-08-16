@@ -12,7 +12,7 @@ function template (phoneToNotificate,name,privateZone,urlImage){
         "to": phoneToNotificate,
         "type": "template",
         "template": {
-            "name": "new_content_to_group",
+            "name": "new_user_add_to_privatezone",
             "language": {
                 "code": "es"
             },
@@ -37,15 +37,7 @@ function template (phoneToNotificate,name,privateZone,urlImage){
                         },
                         {
                             "type": "text",
-                            "text": evaluation
-                        },
-                        {
-                            "type": "text",
-                            "text": group
-                        },
-                        {
-                            "type": "text",
-                            "text": zone
+                            "text": privateZone
                         }
                     ]
                 }
