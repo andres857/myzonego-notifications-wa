@@ -39,7 +39,6 @@ async function sendTemplate(auth,message){
             console.log(error);
             reject(error.message)
         }
-
     })
 }
 
