@@ -1,5 +1,4 @@
 // const startConversation = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
-const moment = require('moment')
 
 class conversations_Services {
     // const timeConversation = 86400000 millisenconds 1 day 
@@ -14,18 +13,24 @@ class conversations_Services {
 
     generator(){
         this.conversations =  [
-            {
-                "phone": "573007566519",
-                "startConversation": "Friday, August 12th 2022, 3:40:03 pm",
-            },
-            {
-                "phone": "573007566520",
-                "startConversation": "Friday, August 12th 2022, 3:40:03 pm",
-            },
-            {
-                "phone": "573007566518",
-                "startConversation": "Friday, August 12th 2022, 3:40:03 pm",
-            }
+            // {   
+            //     "id_client": "01",
+            //     "name":"Andres Londono",
+            //     "phone": "573007566519",
+            //     "startConversation": "Friday, August 12th 2022, 3:40:03 pm",
+            // },
+            // {
+            //     "id_client": "01",
+            //     "name":"Jose Guerrero",
+            //     "phone": "573007566520",
+            //     "startConversation": "Friday, August 12th 2022, 3:40:03 pm",
+            // },
+            // {
+            //     "id_client": "02",
+            //     "name":"Andres Guerrero",
+            //     "phone": "573007566518",
+            //     "startConversation": "Friday, August 12th 2022, 3:40:03 pm",
+            // }
         ]
     }
 
@@ -39,41 +44,48 @@ class conversations_Services {
         return this.conversationCurrent
     }
 
+    getAvailableConversations(){
+        return this.conversationAvailable
+    }
+
+    getCurrentConversations(){
+        return this.conversationCurrent
+    }
+
     findConversation(phone){
         let conversation = this.conversations.find(item => item.phone === phone)
         if(!conversation){
-            console.log('agregar conversation');
             return false
         }else{
-            console.log('ignorar');
             return true
         }
     }
 
-    create(client,conversation){
+    create(conversation){
+        console.log(conversation);
         let conversationfound = this.findConversation(conversation.phone)
         if(conversationfound){
             console.log('La Conversacion ya Inicio');
-            
             return {
-                client,
+                client: conversation.id_client,
                 conversations: this.conversations
             }
         }else{
-            // method to get conversations Available - DB
-            let available = this.available()
+            // method to add conversations Available Conversations - DB
+            
+            this.conversationAvailable = this.conversationAvailable - 1
             // method to get conversations Current - DB
-            let currents = this.current() 
+            this.conversationCurrent = this.conversationCurrent + 1
+            // add Conversation 
             this.conversations.push(conversation)
             return {
-                client,
-                available,
-                currents,
+                a: "saludos",
+                client: conversation.id_client,
+                available:this.conversationAvailable,
+                current:this.conversationCurrent,
                 conversations: this.conversations
             }
         }  
-
-
     }
 }
 
