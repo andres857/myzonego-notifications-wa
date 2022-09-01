@@ -1,19 +1,17 @@
 /*
-content Template
-Hola {{1}}, se agregó el contenido *{{2}}* al grupo {{3}} de tu zona privada {{4}}. Ingresa para ver más.
+Hola {{1}}, has sido agregado a la zona privada *{{2}}*. Ingresa para ver más.
 */
 
-// name, nameContent, group, zone
-const imageContents = "https://pbs.twimg.com/media/FZ4fz2JXkAE2bfk?format=jpg&name=medium"
-const uri = "https://www.myzonego.com/storage/HOME_OFFICE_ybaJwzmtQ9/clubs/f15c9a5128203a4decd12ea52409544d61a693ebb56c3.jpg"
-function template (phoneToNotificate,name,content,group,zone,urlImage){
+const imageMessage = "https://pbs.twimg.com/media/FZ4fz2JXkAE2bfk?format=jpg&name=medium"
+
+function template (phoneToNotificate,name,privateZone,urlImage){
     return {
         "messaging_product": "whatsapp",
         "recipient_type": "individual",
         "to": phoneToNotificate,
         "type": "template",
         "template": {
-            "name": "new_content_to_group",
+            "name": "new_user_add_to_privatezone",
             "language": {
                 "code": "es"
             },
@@ -24,7 +22,7 @@ function template (phoneToNotificate,name,content,group,zone,urlImage){
                         {
                             "type": "image",
                             "image": {
-                                "link": urlImage || imageContents
+                                "link": urlImage || imageMessage
                             }
                         }
                     ]
@@ -38,15 +36,7 @@ function template (phoneToNotificate,name,content,group,zone,urlImage){
                         },
                         {
                             "type": "text",
-                            "text": content
-                        },
-                        {
-                            "type": "text",
-                            "text": group
-                        },
-                        {
-                            "type": "text",
-                            "text": zone
+                            "text": privateZone
                         }
                     ]
                 }
@@ -54,8 +44,5 @@ function template (phoneToNotificate,name,content,group,zone,urlImage){
         }
     }
 }
-
-// const request = template('3007566519','Andres','rest-API', 'Desarrollo','MyZoneGo',uri)
-// console.table(request);
 
 module.exports = template

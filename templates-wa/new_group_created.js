@@ -1,7 +1,7 @@
 /*
 Nuevo grupo creado
-Hola {{1}}, se ha creado el grupo *{{2}}* en tu zona.
-name, name forum , group, zone
+Hola {{1}}, se ha creado el grupo *{{2}}* en tu zona privada {{4}}. Ingresa para ver más.
+
 */
 
 const imageMessage = "https://pbs.twimg.com/media/FZ4fz2JXkAE2bfk?format=jpg&name=medium"

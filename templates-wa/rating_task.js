@@ -1,12 +1,12 @@
 /*
 new rating task created
-Hola {{1}}, tu nota de la tarea {{2}} es {{3}}. Ingresa para ver más.
-name, test, group, zone, url
+Hola {{1}}, tu nota de la tarea {{2}} es {{3}} del grupo {{4}}. Ingresa para ver más.
+
 */
 
 const imageMessage = "https://pbs.twimg.com/media/FZ4fz2JXkAE2bfk?format=jpg&name=medium"
 
-function template (phoneToNotificate,name,nameTask,ratingTask,urlImage){
+function template (phoneToNotificate,name,task,ratingTask,urlImage){
     return {
         "messaging_product": "whatsapp",
         "recipient_type": "individual",
@@ -38,7 +38,7 @@ function template (phoneToNotificate,name,nameTask,ratingTask,urlImage){
                         },
                         {
                             "type": "text",
-                            "text": nameTask
+                            "text": task
                         },
                         {
                             "type": "text",
