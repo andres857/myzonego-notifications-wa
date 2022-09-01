@@ -1,19 +1,13 @@
-const template_new_content_to_group = require('../templates-wa/new_content_to_group')
-const template_new_forum = require('../templates-wa/new_forum.js')
 const template_group_created = require('../templates-wa/new_group_created')
-const template_meeting = require('../templates-wa/new_meeting')
-const template_new_poll = require('../templates-wa/new_poll')
-const template_new_task = require('../templates-wa/new_task')
-const template_new_test = require('../templates-wa/new_test')
-const template_new_user_add_to_privatezone = require('../templates-wa/new_user_add_to_privatezone')
-const template_new_video_calls = require('../templates-wa/new_video_calls')
-const template_rating_task = require('../templates-wa/rating_task')
+const new_notification = require('../templates-wa/new_meeting')
+const new_user = require('../templates-wa/new_user_add_to_privatezone')
+const new_video_calls = require('../templates-wa/new_video_calls')
+const rating_task = require('../templates-wa/rating_task')
 
 
 function getTemplate(template,  data){
 
     if( template === "new_content_to_group" ){
-        
         return template_new_content_to_group(element.phone, element.name, contentName, group, zone, urlImage)//SI   
     } else if(template === "new_forum"){
         return template_new_forum(element.phone, element.name, forum, group, zone, urlImage)//SI

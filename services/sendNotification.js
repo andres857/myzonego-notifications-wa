@@ -8,17 +8,20 @@ async function sendTemplate(auth,message){
         let logs = []
 
         let graph = `https://graph.facebook.com/v13.0/${auth.wa_phoneNumberId}/messages`
+        let typeNotification = message.typeNotification
         let contentName = message.content_name
         let group = message.group
         let zone = message.zone
         let urlImage = message.image
 
-        let template = getTemplate("new_content_to_group")
-        // const templateMessage = template(element.phone, element.name, contentName, group, zone, urlImage)     
+        let template = getTemplate('', '', typeNotification, contentName, group, zone, urlImage)
+
         try {
             message.numbersToNotificate.forEach( async element => {   
                 template.to = element.phone
-                axios.post(graph,templateMessage, {
+                template.template.components[1].parameters[0].text = element.name
+                console.log(template);
+                axios.post(graph,template, {
                     headers: {
                         Authorization: `Bearer ${auth.wa_accessToken}`,
                     },
