@@ -17,7 +17,10 @@ router.post('/',  async (req,res)=>{
     const {auth, message} = req.body
         service.sendTemplate(auth,message).then(logs =>{
             console.log(`routes ${moment().format("dddd, MMMM Do YYYY, h:mm:ss a")} -------- ${logs}`);
-            res.json(logs)
+            res.json({
+                logs,
+                auth
+            })
         }).catch( e => {
             res.json({
                 error: e
