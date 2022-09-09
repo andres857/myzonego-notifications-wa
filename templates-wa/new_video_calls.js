@@ -6,14 +6,14 @@ name, videocall, zone, url
 
 const imageMessage = "https://pbs.twimg.com/media/FZ4fz2JXkAE2bfk?format=jpg&name=medium"
 
-function template (phoneToNotificate,name,videocall,zone,urlImage){
+function template (phoneToNotificate,name,nameTemplate,videocall,zone,urlImage){
     return {
         "messaging_product": "whatsapp",
         "recipient_type": "individual",
         "to": phoneToNotificate,
         "type": "template",
         "template": {
-            "name": "new_video_calls",
+            "name": nameTemplate,
             "language": {
                 "code": "es"
             },

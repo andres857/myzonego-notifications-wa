@@ -1,26 +1,22 @@
 const axios = require('axios')
-const getTemplate = require('../templates-wa/new_notification')
-
+const newUserTemplate = require('../../templates-wa/new_user')
 const moment = require('moment')
 
-async function sendTemplate(auth,message){
+async function sendTemplate( client, auth, message ){
     return new Promise ((resolve,reject)=>{
         let logs = []
 
         let graph = `https://graph.facebook.com/v13.0/${auth.wa_phoneNumberId}/messages`
-        let typeNotification = message.typeNotification
-        let contentName = message.content_name
-        let group = message.group
         let zone = message.zone
         let urlImage = message.image
+        let templateName =  client + '_new_user'
 
-        let template = getTemplate('', '', typeNotification, contentName, group, zone, urlImage)
+        let template = newUserTemplate( '', '', templateName, zone, urlImage )
 
         try {
             message.numbersToNotificate.forEach( async element => {   
                 template.to = element.phone
                 template.template.components[1].parameters[0].text = element.name
-                console.log(template);
                 axios.post(graph,template, {
                     headers: {
                         Authorization: `Bearer ${auth.wa_accessToken}`,
@@ -37,7 +33,7 @@ async function sendTemplate(auth,message){
                     }
                     console.log(`service ${moment().format("dddd, MMMM Do YYYY, h:mm:ss a")} -------- ${logs}`);
                 }).catch((error) => {
-                    console.log(error);
+                    // console.log(error);
                     reject(error)
                 })
             })

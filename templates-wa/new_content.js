@@ -2,17 +2,16 @@
 new meeting created
 Hola {{1}}, se agregó {{2}} {{3}} en el grupo {{4}} de tu zona privada {{5}}. Ingresa para ver más.
 */
-
 const imageMessage = "https://pbs.twimg.com/media/FZ4fz2JXkAE2bfk?format=jpg&name=medium"
 
-function template (phoneToNotificate,name,typeNotification,content_name,group,zone,urlImage){
+function template ( phoneToNotificate, name, template, typeNotification, content_name, group, zone, urlImage ){
     return {
         "messaging_product": "whatsapp",
         "recipient_type": "individual",
         "to": phoneToNotificate,
         "type": "template",
         "template": {
-            "name": "wc_new_notification",
+            "name": template,
             "language": {
                 "code": "es"
             },
