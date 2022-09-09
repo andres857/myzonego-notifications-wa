@@ -23,6 +23,7 @@ router.post('/',  async (req,res)=>{
             })
         }).catch( e => {
             res.json({
+                auth,
                 error: e
             })
         })
